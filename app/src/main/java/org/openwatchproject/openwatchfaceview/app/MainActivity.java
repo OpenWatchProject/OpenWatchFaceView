@@ -1,10 +1,12 @@
-package org.openwatchproject.openwatchfaceview;
+package org.openwatchproject.openwatchfaceview.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import org.openwatchproject.openwatchfaceview.OpenWatchFaceView;
 
 public class MainActivity extends AppCompatActivity {
 
