@@ -10,19 +10,19 @@ import org.openwatchproject.openwatchfaceview.OpenWatchFaceView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private OpenWatchFaceView watchFaceView;
+    private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OpenWatchFaceView watchFaceView = findViewById(R.id.watchface);
-        Button button = findViewById(R.id.button);
+        watchFaceView = findViewById(R.id.watchface);
+        button = findViewById(R.id.button);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Open watchface picker
-            }
+        button.setOnClickListener(v -> {
+            // TODO: Open watchface picker
         });
     }
 }

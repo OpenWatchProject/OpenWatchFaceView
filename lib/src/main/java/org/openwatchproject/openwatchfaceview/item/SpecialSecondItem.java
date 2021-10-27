@@ -5,10 +5,10 @@ import android.graphics.drawable.Drawable;
 
 import org.openwatchproject.openwatchfaceview.DataRepository;
 
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
-public class SpecialSecondItem extends AbstractItem {
+public class SpecialSecondItem extends DrawableItem {
     public SpecialSecondItem(int centerX, int centerY, List<Drawable> frames) {
         super(centerX, centerY, frames);
     }

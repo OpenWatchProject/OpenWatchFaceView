@@ -5,11 +5,10 @@ import android.graphics.drawable.Drawable;
 
 import org.openwatchproject.openwatchfaceview.DataRepository;
 
-import java.util.List;
 import java.util.Calendar;
 import java.util.List;
 
-public class HourItem extends AbstractItem {
+public class HourItem extends DrawableItem {
     public HourItem(int centerX, int centerY, List<Drawable> frames) {
         super(centerX, centerY, frames);
     }
@@ -26,16 +25,6 @@ public class HourItem extends AbstractItem {
         }*/
         Drawable drawable1 = drawables.get(hour / 10);
         Drawable drawable2 = drawables.get(hour % 10);
-
-        int centerX = viewCenterX + this.centerX;
-        int centerY = viewCenterY + this.centerY;
-        int width = drawable1.getIntrinsicWidth();
-        int halfHeight = drawable1.getIntrinsicHeight() / 2;
-        int top = centerY - halfHeight;
-        int bottom = centerY + halfHeight;
-        drawable1.setBounds(centerX - width, top, centerX, bottom);
-        drawable1.draw(canvas);
-        drawable2.setBounds(centerX, top, centerX + width, bottom);
-        drawable2.draw(canvas);
+        draw(viewCenterX, viewCenterY, canvas, drawable1, drawable2);
     }
 }

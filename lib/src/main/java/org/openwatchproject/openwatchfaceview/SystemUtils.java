@@ -14,7 +14,7 @@ public class SystemUtils {
 
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-        batteryPercentage =  Math.round((float) (level * 100) / (float) scale);
+        batteryPercentage = Math.round((float) (level * 100) / (float) scale);
     }
 
     public static boolean isBatteryCharging() {

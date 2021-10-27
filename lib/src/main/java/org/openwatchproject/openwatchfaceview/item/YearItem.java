@@ -5,11 +5,10 @@ import android.graphics.drawable.Drawable;
 
 import org.openwatchproject.openwatchfaceview.DataRepository;
 
-import java.util.List;
 import java.util.Calendar;
 import java.util.List;
 
-public class YearItem extends AbstractItem {
+public class YearItem extends DrawableItem {
     public YearItem(int centerX, int centerY, List<Drawable> frames) {
         super(centerX, centerY, frames);
     }
@@ -23,19 +22,6 @@ public class YearItem extends AbstractItem {
         Drawable y10 = drawables.get(((year % 1000) % 100) / 10);
         Drawable y1 = drawables.get(((year % 1000) % 100) % 10);
 
-        int centerX = viewCenterX + this.centerX;
-        int centerY = viewCenterY + this.centerY;
-        int width = y1000.getIntrinsicWidth();
-        int halfHeight = y1000.getIntrinsicHeight() / 2;
-        int top = centerY - halfHeight;
-        int bottom = centerY + halfHeight;
-        y1000.setBounds(centerX - (width * 2), top, centerX - width, bottom);
-        y1000.draw(canvas);
-        y100.setBounds(centerX - width, top, centerX, bottom);
-        y100.draw(canvas);
-        y10.setBounds(centerX, top, centerX + width, bottom);
-        y10.draw(canvas);
-        y1.setBounds(centerX + width, top, centerX + (width * 2), bottom);
-        y1.draw(canvas);
+        draw(viewCenterX, viewCenterY, canvas, y1000, y100, y10, y1);
     }
 }

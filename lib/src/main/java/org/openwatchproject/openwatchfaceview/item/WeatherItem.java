@@ -5,10 +5,10 @@ import android.graphics.drawable.Drawable;
 
 import org.openwatchproject.openwatchfaceview.DataRepository;
 
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
-public class WeatherItem extends AbstractItem {
+public class WeatherItem extends DrawableItem {
     public WeatherItem(int centerX, int centerY, List<Drawable> frames) {
         super(centerX, centerY, frames);
     }

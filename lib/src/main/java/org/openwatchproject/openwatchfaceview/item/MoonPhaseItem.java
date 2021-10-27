@@ -5,11 +5,10 @@ import android.graphics.drawable.Drawable;
 
 import org.openwatchproject.openwatchfaceview.DataRepository;
 
-import java.util.List;
 import java.util.Calendar;
 import java.util.List;
 
-public class MoonPhaseItem extends AbstractItem {
+public class MoonPhaseItem extends DrawableItem {
     public MoonPhaseItem(int centerX, int centerY, List<Drawable> frames) {
         super(centerX, centerY, frames);
     }

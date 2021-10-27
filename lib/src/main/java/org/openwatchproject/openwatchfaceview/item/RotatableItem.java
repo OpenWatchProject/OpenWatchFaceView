@@ -9,7 +9,8 @@ import org.openwatchproject.openwatchfaceview.OpenWatchFaceConstants;
 import java.util.Calendar;
 import java.util.List;
 
-public abstract class RotatableItem extends AbstractItem {
+public abstract class RotatableItem extends DrawableItem {
+    private static final String TAG = "RotatableItem";
 
     /**
      * Indicates the angle which the item will start at.
@@ -26,7 +27,7 @@ public abstract class RotatableItem extends AbstractItem {
     /**
      * Indicates the direction for the analog hand.
      * 0 = Clockwise
-     * 1 = Anti-Clockwise
+     * 1 = Counterclockwise
      * Default: 0
      */
     final int direction;
@@ -39,9 +40,9 @@ public abstract class RotatableItem extends AbstractItem {
     }
 
     /**
-     * @return float The progress between 0.0 and 1.0
      * @param calendar
      * @param dataRepository
+     * @return float The progress between 0.0 and 1.0
      */
     abstract float getProgress(Calendar calendar, DataRepository dataRepository);
 
@@ -56,13 +57,13 @@ public abstract class RotatableItem extends AbstractItem {
 
         if (direction == OpenWatchFaceConstants.DIRECTION_CLOCKWISE) {
             angle = startAngle + angle;
-        } else {
+        } else if (direction == OpenWatchFaceConstants.DIRECTION_COUNTERCLOCKWISE) {
             angle = startAngle - angle;
         }
 
-        drawable.setBounds(centerX - halfWidth, centerY - halfHeight, centerX + halfWidth, centerY + halfHeight);
         canvas.save();
         canvas.rotate(angle, (float) centerX, (float) centerY);
+        drawable.setBounds(centerX - halfWidth, centerY - halfHeight, centerX + halfWidth, centerY + halfHeight);
         drawable.draw(canvas);
         canvas.restore();
     }

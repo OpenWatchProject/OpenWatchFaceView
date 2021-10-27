@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Canvas;
-import android.os.SystemClock;
 import android.util.AttributeSet;
-import android.view.Choreographer;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.time.temporal.ChronoField;
 import java.util.Calendar;
 import java.util.TimeZone;
 

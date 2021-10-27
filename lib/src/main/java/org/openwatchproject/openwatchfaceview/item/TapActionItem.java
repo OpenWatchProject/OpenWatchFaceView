@@ -14,29 +14,18 @@ public class TapActionItem extends StaticItem {
 
     /**
      * Indicates the package containing the activity to be launched.
-     *
-     * Only valid if type == 100!
-     *
-     * Equivalent to ClockSkin's pkg
      */
     private String packageName;
 
     /**
      * Indicates the class for the activity to be launched.
-     *
-     * Only valid if type == 100 and packageName is valid!
-     *
-     * Equivalent to ClockSkin's cls
      */
     private String className;
 
     /**
-     * Indicates the range (radius) for the invisible button
-     * that this item represents.
-     *
-     * Only valid if type == 100, packageName is valid and className is valid!
+     * Indicates the radius in pixels from the center of the item.
      */
-    private int range;
+    private int radius;
 
     public TapActionItem(int centerX, int centerY, List<Drawable> frames) {
         super(centerX, centerY, frames);
@@ -50,15 +39,15 @@ public class TapActionItem extends StaticItem {
         this.className = className;
     }
 
-    public void setRange(int range) {
-        this.range = range;
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     public boolean onTapAction(Context context, int viewCenterX, int viewCenterY, float touchX, float touchY) {
         int x = viewCenterX + centerX;
         int y = viewCenterY + centerY;
 
-        if (distance(touchX, touchY, x, y) <= range) {
+        if (distance(touchX, touchY, x, y) <= radius) {
             Intent i = new Intent();
             i.setComponent(new ComponentName(packageName, className));
             try {

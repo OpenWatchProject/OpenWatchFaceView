@@ -5,11 +5,10 @@ import android.graphics.drawable.Drawable;
 
 import org.openwatchproject.openwatchfaceview.DataRepository;
 
-import java.util.List;
 import java.util.Calendar;
 import java.util.List;
 
-public class DayOfWeekItem extends AbstractItem {
+public class DayOfWeekItem extends DrawableItem {
 
     public DayOfWeekItem(int centerX, int centerY, List<Drawable> frames) {
         super(centerX, centerY, frames);
@@ -21,13 +20,6 @@ public class DayOfWeekItem extends AbstractItem {
         int weekDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
         Drawable drawable = drawables.get(weekDay);
 
-        int centerX = viewCenterX + this.centerX;
-        int centerY = viewCenterY + this.centerY;
-        int halfWidth = drawable.getIntrinsicWidth() / 2;
-        int halfHeight = drawable.getIntrinsicHeight() / 2;
-        int top = centerY - halfHeight;
-        int bottom = centerY + halfHeight;
-        drawable.setBounds(centerX - halfWidth, top, centerX + halfWidth, bottom);
-        drawable.draw(canvas);
+        draw(viewCenterX, viewCenterY, canvas, drawable);
     }
 }

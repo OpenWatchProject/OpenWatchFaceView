@@ -6,7 +6,8 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
-import org.openwatchproject.openwatchfaceview.item.AbstractItem;
+import org.openwatchproject.openwatchfaceview.item.DrawableItem;
+import org.openwatchproject.openwatchfaceview.item.Item;
 import org.openwatchproject.openwatchfaceview.item.TapActionItem;
 
 import java.util.ArrayList;
@@ -31,20 +32,15 @@ public class OpenWatchFace {
     /**
      * The items that form this WatchFace.
      */
-    private final ArrayList<AbstractItem> items;
-
-    /**
-     * The items that can start an action
-     */
-    private final ArrayList<TapActionItem> tapActionItems;
+    private final ArrayList<Item> items;
 
     private Uri path;
 
-    public OpenWatchFace(int width, int height) {
+    private OpenWatchFace(int width, int height, ArrayList<Item> items, Uri path) {
         this.width = width;
         this.height = height;
-        this.items = new ArrayList<>();
-        this.tapActionItems = new ArrayList<>();
+        this.items = items;
+        this.path = path;
     }
 
     public int getWidth() {
@@ -55,36 +51,53 @@ public class OpenWatchFace {
         return height;
     }
 
-    public void setPath(Uri path) {
-        this.path = path;
-    }
-
     public Uri getPath() {
         return path;
     }
 
-    public void addItem(AbstractItem item) {
-        items.add(item);
-    }
-
-    public void addTapActionItem(TapActionItem item) {
-        tapActionItems.add(item);
-    }
-
     public boolean onTapAction(Context context, int viewCenterX, int viewCenterY, float touchX, float touchY) {
-        for (TapActionItem item : tapActionItems) {
-            if (item.onTapAction(context, viewCenterX, viewCenterY, touchX, touchY)) {
-                return true;
+        for (Item i : items) {
+            if (i instanceof TapActionItem) {
+                if (((TapActionItem) i).onTapAction(context, viewCenterX, viewCenterY, touchX, touchY)) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
     public void draw(int viewCenterX, int viewCenterY, @NonNull Canvas canvas, @NonNull Calendar calendar, @NonNull DataRepository dataRepository) {
-        for (AbstractItem i : items) {
-            if (i.isDrawable()) {
-                i.draw(viewCenterX, viewCenterY, canvas, calendar, dataRepository);
+        for (Item i : items) {
+            if (i instanceof DrawableItem) {
+                ((DrawableItem) i).draw(viewCenterX, viewCenterY, canvas, calendar, dataRepository);
             }
+        }
+    }
+
+    public static class Builder {
+        private final int width;
+        private final int height;
+        private final ArrayList<Item> items;
+        private Uri path;
+
+        public Builder(int width, int height) {
+            this.width = width;
+            this.height = height;
+            this.items = new ArrayList<>();
+        }
+
+        public Builder addItem(Item item) {
+            this.items.add(item);
+            return this;
+        }
+
+        public Builder setPath(Uri path) {
+            this.path = path;
+            return this;
+        }
+
+        public OpenWatchFace build() {
+            return new OpenWatchFace(width, height, items, path);
         }
     }
 }
