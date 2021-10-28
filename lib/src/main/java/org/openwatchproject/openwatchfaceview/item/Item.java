@@ -1,15 +1,13 @@
 package org.openwatchproject.openwatchfaceview.item;
 
 public abstract class Item {
-    private static final String TAG = "AbstractItem";
-
     /**
-     * Indicates the (width) center for the item in pixels
+     * Indicates the horizontal center for the item in pixels.
      */
     final int centerX;
 
     /**
-     * Indicates the (height) center for the item in pixels
+     * Indicates the vertical center for the item in pixels.
      */
     final int centerY;
 

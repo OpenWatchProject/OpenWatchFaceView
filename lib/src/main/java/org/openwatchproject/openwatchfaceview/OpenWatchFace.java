@@ -15,22 +15,22 @@ import java.util.Calendar;
 
 public class OpenWatchFace {
     /**
-     * The OpenWatch WatchFace format version
+     * The OpenWatchFace format version
      */
     private static final int VERSION = 1;
 
     /**
-     * The width in pixels for which this WatchFace was designed for.
+     * The width in pixels for which this watch face was designed for.
      */
     private final int width;
 
     /**
-     * The height in pixels for which this WatchFace was designed for.
+     * The height in pixels for which this watch face was designed for.
      */
     private final int height;
 
     /**
-     * The items that form this WatchFace.
+     * The items that form this watch face.
      */
     private final ArrayList<Item> items;
 
